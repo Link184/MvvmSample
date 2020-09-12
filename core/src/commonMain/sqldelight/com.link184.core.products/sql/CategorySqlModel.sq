@@ -1,0 +1,15 @@
+import com.link184.products.core.model.Category;
+
+CREATE TABLE CategorySqlModel (
+    category TEXT as Category NOT NULL
+);
+
+insertItem:
+INSERT OR FAIL INTO CategorySqlModel(category) VALUES (?);
+
+selectAll:
+SELECT *
+FROM CategorySqlModel;
+
+clear:
+DELETE FROM CategorySqlModel;
