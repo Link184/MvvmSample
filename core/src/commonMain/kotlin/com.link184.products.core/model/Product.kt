@@ -10,4 +10,4 @@ data class Product(
     val url: String,
     val description: String,
     val salePrice: SalePrice
-)
+): com.link184.products.core.Serializable

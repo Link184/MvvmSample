@@ -8,4 +8,4 @@ import kotlinx.serialization.Serializable
 data class SalePrice(
     @Serializable(with = BigDecimalSerializer::class) val amount: BigDecimal,
     val currency: Currency
-)
+): com.link184.products.core.Serializable
