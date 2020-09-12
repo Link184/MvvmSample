@@ -2,7 +2,7 @@ package com.link184.products.core
 
 import com.link184.products.core.model.Category
 import com.link184.products.core.repository.CategoriesRepository
-import com.link184.products.core.service.DummyCategoriesService
+import com.link184.products.core.service.AwsCategoriesService
 import com.link184.products.core.sql.CategoryDAO
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -20,7 +20,7 @@ import kotlin.test.assertTrue
 @RunWith(JUnit4::class)
 class CategoriesRepositoryTest {
     private val repository =
-        CategoriesRepository(DummyCategoriesService(TestSession), TestPersistentSession())
+        CategoriesRepository(AwsCategoriesService(TestSession), TestPersistentSession())
 
     @Test
     fun `repository categories response test`() {

@@ -22,6 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+}
+
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
@@ -34,4 +42,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation project(":core")
+    implementation "com.squareup.sqldelight:android-driver:1.4.0"
+
+    // My mvvm framework https://github.com/Link184/ArchitectureMVVM
+    implementation "com.link184:common-mvvm:0.9.1-SNAPSHOT"
+    // My recycler view dsl library https://github.com/Link184/KidAdapter
+    implementation 'com.link184:kid-adapter:1.3.8-SNAPSHOT'
+    // My set of utils https://github.com/Link184/Extensions
+    implementation 'com.link184:common-extensions:1.1.9-SNAPSHOT'
 }
