@@ -10,8 +10,10 @@
         android:id="@+id/categoryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
-        android:textSize="18sp"
+        android:maxLines="1"
+        android:textSize="32sp"
         android:textStyle="bold"
         tools:text="Category Name" />
 
