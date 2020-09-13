@@ -6,6 +6,7 @@ import com.link184.products.R
 import com.link184.products.base.BaseActivity
 import com.link184.products.core.model.Category
 import com.link184.products.core.model.Product
+import com.link184.products.main.details.DetailsActivity
 import kotlinx.android.synthetic.main.item_cateogry.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -34,7 +35,11 @@ class MainActivity : BaseActivity<MainVM>(MainVM::class) {
                             productName.text = it.name
                             productDescription.text = it.description
                             productThumbnail.loadUrl(it.url) {
-                                this.error(R.drawable.ic_baseline_error)
+                                error(R.drawable.ic_baseline_error)
+                            }
+                            setOnClickListener { _ ->
+                                DetailsActivity.startActivity(this@MainActivity,
+                                    it.categoryId, it.id,productName, productThumbnail)
                             }
                         }
                     }

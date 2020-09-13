@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MvvmSample</string>
+    <string translatable="false" name="transition_product_name">productName</string>
+    <string translatable="false" name="transition_product_image">productImage</string>
 </resources>

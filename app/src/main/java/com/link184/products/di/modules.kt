@@ -8,6 +8,7 @@ import com.link184.products.core.service.AwsCategoriesService
 import com.link184.products.core.service.CategoriesService
 import com.link184.products.core.service.FooCategoriesService
 import com.link184.products.main.MainVM
+import com.link184.products.main.details.DetailsVM
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -30,4 +31,5 @@ val dataModelsModule = module {
 
 val viewModule = module {
     viewModel { MainVM(get()) }
+    viewModel { DetailsVM(get()) }
 }
