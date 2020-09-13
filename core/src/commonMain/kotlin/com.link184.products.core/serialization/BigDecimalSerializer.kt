@@ -17,7 +17,7 @@ class BigDecimalSerializer : KSerializer<BigDecimal> {
 
     @InternalSerializationApi
     override fun serialize(encoder: Encoder, value: BigDecimal) {
-        encoder.encodeString(value.toStringExpanded())
+        encoder.encodeString(value.toPlainString())
     }
 
     override fun deserialize(input: Decoder): BigDecimal {

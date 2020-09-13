@@ -2,6 +2,7 @@ package com.link184.products.core.sql
 
 import com.link184.products.core.ProductsDatabase
 import com.link184.products.core.model.Category
+import com.link184.products.core.model.SalePrice
 import com.squareup.sqldelight.ColumnAdapter
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -19,6 +20,17 @@ abstract class SqldelightDAO(sqlPersistence: SqlPersistence) {
                             return Json.encodeToString(value)
                         }
                     }
-            )
+            ),
+        comlink184coreproducts.sql.ProductSqlModel.Adapter(
+            object : ColumnAdapter<SalePrice, String> {
+                override fun decode(databaseValue: String): SalePrice {
+                    return Json.decodeFromString(databaseValue)
+                }
+
+                override fun encode(value: SalePrice): String {
+                    return Json.encodeToString(value)
+                }
+            }
+        )
     )
 }

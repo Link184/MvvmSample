@@ -6,6 +6,7 @@ import com.link184.products.core.model.Currency
 import com.link184.products.core.model.Product
 import com.link184.products.core.model.SalePrice
 import com.link184.products.core.sql.CategoryDAO
+import com.link184.products.core.sql.ProductDAO
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.Test
@@ -18,7 +19,8 @@ import kotlin.test.assertTrue
 class DatabaseTest {
     @Test
     fun `categories test`() {
-        val categoryDAO = CategoryDAO(TestPersistentSession())
+        val sqlPersistence = TestPersistentSession()
+        val categoryDAO = CategoryDAO(sqlPersistence)
         val categoryResponse = Json.decodeFromString<List<Category>>(categories)
         categoryDAO.insertAll(categoryResponse)
 
@@ -37,5 +39,26 @@ class DatabaseTest {
         categoryDAO.insertItem(testItem)
         categories = categoryDAO.getItems()
         assertTrue { categories.contains(testItem) }
+
+        testProducts(sqlPersistence, testItem)
+    }
+
+    private fun testProducts(persistentSession: PersistentSession, testCategory: Category) {
+        val productDAO = ProductDAO(persistentSession)
+
+        val persistentProducts: List<Product> = productDAO.getItems()
+
+        assertTrue {
+            testCategory.products.map { prodcut ->
+                persistentProducts.find {
+                    it.id == prodcut.id
+                            && it.url == prodcut.url
+                            && it.categoryId == prodcut.categoryId
+                            && it.description == prodcut.description
+                } != null
+            }.reduce { acc, b ->
+                acc && b
+            }
+        }
     }
 }

@@ -1,0 +1,22 @@
+import com.link184.products.core.model.Category;
+import com.link184.products.core.model.Product;
+import com.link184.products.core.model.SalePrice;
+
+CREATE TABLE ProductSqlModel (
+    id TEXT NOT NULL,
+    category_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    description TEXT NOT NULL,
+    salePrice TEXT as SalePrice NOT NULL
+);
+
+insertItem:
+INSERT OR FAIL INTO ProductSqlModel(id, category_id, name, url, description, salePrice) VALUES (?, ?, ?, ?, ?, ?);
+
+selectAll:
+SELECT *
+FROM ProductSqlModel;
+
+clear:
+DELETE FROM CategorySqlModel;
