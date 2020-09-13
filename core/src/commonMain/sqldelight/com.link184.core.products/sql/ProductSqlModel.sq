@@ -18,5 +18,10 @@ selectAll:
 SELECT *
 FROM ProductSqlModel;
 
+selectById:
+SELECT *
+FROM ProductSqlModel
+WHERE id = ? AND category_id = ?;
+
 clear:
 DELETE FROM CategorySqlModel;

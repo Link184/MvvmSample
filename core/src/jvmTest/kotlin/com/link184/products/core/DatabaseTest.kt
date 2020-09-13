@@ -60,5 +60,13 @@ class DatabaseTest {
                 acc && b
             }
         }
+
+        val selectedProduct = productDAO.selectByProductIdAndCategoryId(testCategory.products.first().id, testCategory.id)
+        assertTrue {
+            testCategory.products.first().let {
+                it.id == selectedProduct.id
+                it.categoryId == testCategory.id
+            }
+        }
     }
 }

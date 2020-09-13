@@ -21,4 +21,8 @@ class ProductDAO(sqlPersistence: SqlPersistence) : SqldelightDAO(sqlPersistence)
     }
 
     override fun clear() =transacter.clear()
+
+    fun selectByProductIdAndCategoryId(productId: String, categoryId: String): Product {
+        return transacter.selectById(productId, categoryId, ::Product).executeAsOne()
+    }
 }
