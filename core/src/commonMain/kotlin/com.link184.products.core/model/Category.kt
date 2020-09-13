@@ -6,10 +6,10 @@ import kotlinx.serialization.Transient
 
 @Serializable
 data class Category(
-    val id: String,
-    val name: String,
-    val description: String,
-    val products : List<Product>,
-    @Transient
-    override val isFromCache: Boolean = false
-): Entity
+        val id: String,
+        val name: String,
+        val description: String,
+        val products: List<Product>,
+        @Transient
+        override val isFromCache: Boolean = false
+) : Entity

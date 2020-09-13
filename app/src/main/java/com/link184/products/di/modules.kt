@@ -17,9 +17,11 @@ import org.koin.dsl.module
 val dataModelsModule = module {
     single(named<PersistentSession>()) { AndroidPersistentSession(androidContext()) }
     single<CategoriesService>(named<AwsCategoriesService>()) { AwsCategoriesService(get(named<PersistentSession>())) }
-    single<CategoriesService>(named<FooCategoriesService>()) { FooCategoriesService(get(
-        named<PersistentSession>()
-    )) }
+    single<CategoriesService>(named<FooCategoriesService>()) {
+        FooCategoriesService(get(
+                named<PersistentSession>()
+        ))
+    }
     single {
         if (BuildConfig.DEBUG) {
             CategoriesRepository(get(named<AwsCategoriesService>()), get(named<PersistentSession>()))

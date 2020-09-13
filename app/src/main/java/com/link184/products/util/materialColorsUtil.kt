@@ -9,14 +9,14 @@ import com.link184.products.BuildConfig
 import kotlin.random.Random
 
 val materialColorResources =
-    Class.forName("${BuildConfig.APPLICATION_ID}.R\$color").declaredFields.let { fields ->
-        fields.filter {
-            it.name.startsWith("material_")
-        }
-            .map {
-                it.getInt(null)
+        Class.forName("${BuildConfig.APPLICATION_ID}.R\$color").declaredFields.let { fields ->
+            fields.filter {
+                it.name.startsWith("material_")
             }
-    }
+                    .map {
+                        it.getInt(null)
+                    }
+        }
 
 @ColorRes
 fun randomMaterialColorRes() = materialColorResources.random(Random(System.nanoTime()))

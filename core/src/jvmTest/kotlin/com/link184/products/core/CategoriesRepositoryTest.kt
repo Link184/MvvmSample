@@ -17,7 +17,7 @@ import kotlin.test.assertTrue
 @RunWith(JUnit4::class)
 class CategoriesRepositoryTest {
     private val repository =
-        CategoriesRepository(AwsCategoriesService(TestSession), TestPersistentSession())
+            CategoriesRepository(AwsCategoriesService(TestSession), TestPersistentSession())
 
     @InternalCoroutinesApi
     @Test
@@ -33,18 +33,18 @@ class CategoriesRepositoryTest {
 
         runBlocking {
             repository.getCategories()
-                .onCompletion {
-                    verify(categoryDAOSpy, times(1)).insertAll(any())
-                }
-                .collect { }
+                    .onCompletion {
+                        verify(categoryDAOSpy, times(1)).insertAll(any())
+                    }
+                    .collect { }
 
             reset(categoryDAOSpy)
 
             repository.getCategories()
-                .onCompletion {
-                    verify(categoryDAOSpy, times(0)).insertAll(any())
-                }
-                .collect { }
+                    .onCompletion {
+                        verify(categoryDAOSpy, times(0)).insertAll(any())
+                    }
+                    .collect { }
         }
     }
 
@@ -62,22 +62,22 @@ class CategoriesRepositoryTest {
         val testCategory = Category("444", "TestCategory", "TestDescription", emptyList())
         runBlocking {
             repository.getCategories()
-                .onCompletion {
-                    verify(categoryDAOSpy, times(2)).replaceAll(any())
-                }
-                .collect {
-                    val newCategoriesList = it.toMutableList().apply { add(testCategory) }
-                    categoryDAOSpy.replaceAll(newCategoriesList)
-                }
+                    .onCompletion {
+                        verify(categoryDAOSpy, times(2)).replaceAll(any())
+                    }
+                    .collect {
+                        val newCategoriesList = it.toMutableList().apply { add(testCategory) }
+                        categoryDAOSpy.replaceAll(newCategoriesList)
+                    }
 
             reset(categoryDAOSpy)
 
             repository.getCategories()
-                .onCompletion {
-                    verify(categoryDAOSpy, times(1)).replaceAll(any())
-                }
-                .collect {
-                }
+                    .onCompletion {
+                        verify(categoryDAOSpy, times(1)).replaceAll(any())
+                    }
+                    .collect {
+                    }
         }
     }
 
@@ -85,16 +85,16 @@ class CategoriesRepositoryTest {
     fun `test injected image urls`() {
         runBlocking {
             repository.getCategories().safeCollect(
-                onSuccess = { categories ->
-                    categories.all {category ->
-                        category.products.all {
-                            it.url.startsWith(TestSession.mediaHostingBaseUrl)
+                    onSuccess = { categories ->
+                        categories.all { category ->
+                            category.products.all {
+                                it.url.startsWith(TestSession.mediaHostingBaseUrl)
+                            }
                         }
+                    },
+                    onError = {
+                        throw it
                     }
-                },
-                onError = {
-                    throw it
-                }
             )
         }
     }

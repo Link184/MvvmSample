@@ -8,7 +8,7 @@ import com.link184.products.core.model.Product
 import com.link184.products.core.repository.CategoriesRepository
 
 class DetailsVM(
-    private val repository: CategoriesRepository
+        private val repository: CategoriesRepository
 ) : BaseVM() {
     val product = MutableLiveData<Event<Product>>()
 

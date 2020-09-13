@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit
 
 internal actual val timeout: Long = 30_000
 internal actual val serializer: JsonSerializer = KotlinxSerializer(
-    Json {
-        ignoreUnknownKeys = false
-        isLenient = true
-        useArrayPolymorphism = true
-        encodeDefaults = false
-    }
+        Json {
+            ignoreUnknownKeys = false
+            isLenient = true
+            useArrayPolymorphism = true
+            encodeDefaults = false
+        }
 )
 internal actual val logLevel: LogLevel = LogLevel.ALL
 internal actual val userAgent: String = "android"

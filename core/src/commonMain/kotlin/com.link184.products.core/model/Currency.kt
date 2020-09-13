@@ -10,8 +10,8 @@ enum class Currency {
     companion object {
         fun resolveCurrency(currencyName: String): Currency {
             return values()
-                .find { it.name.equals(currencyName, true) }
-                ?: throw IllegalStateException("Unsupported currency")
+                    .find { it.name.equals(currencyName, true) }
+                    ?: throw IllegalStateException("Unsupported currency")
         }
     }
 }

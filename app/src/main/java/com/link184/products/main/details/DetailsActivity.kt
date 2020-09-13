@@ -62,10 +62,10 @@ class DetailsActivity : BaseActivity<DetailsVM>(DetailsVM::class) {
             }.toTypedArray()
 
             context.startActivity(
-                Intent(context, DetailsActivity::class.java)
-                    .putExtra(CATEGORY_ID_EXTRA_KEY, categoryId)
-                    .putExtra(PRODUCT_ID_EXTRA_KEY, productId),
-                ActivityOptionsCompat.makeSceneTransitionAnimation(context, *transitionViewPairs).toBundle()
+                    Intent(context, DetailsActivity::class.java)
+                            .putExtra(CATEGORY_ID_EXTRA_KEY, categoryId)
+                            .putExtra(PRODUCT_ID_EXTRA_KEY, productId),
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(context, *transitionViewPairs).toBundle()
             )
         }
     }

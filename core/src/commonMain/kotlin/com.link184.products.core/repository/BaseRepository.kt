@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.flow
 
 abstract class BaseRepository<T>(val service: T) {
     open fun <Payload : Entity, E : List<Payload>, Model : E> exchangeCachedFlow(
-        sqlDelightCRUD: SqlDelightCRUD<Payload>,
-        block: suspend () -> Model
+            sqlDelightCRUD: SqlDelightCRUD<Payload>,
+            block: suspend () -> Model
     ): Flow<List<Payload>> {
         return flow<List<Payload>> {
             val cachedItems = getAndMaybeEmitItemsFromCache(sqlDelightCRUD)

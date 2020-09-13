@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 @RunWith(JUnit4::class)
 class BigDecimalSerializationTest {
     private val price = "9232.2123121432543634234234234234"
-    private val salePriceJsonString =  "{" +
+    private val salePriceJsonString = "{" +
             "\"amount\":\"$price\"," +
             "\"currency\":\"EUR\"" +
             "}"

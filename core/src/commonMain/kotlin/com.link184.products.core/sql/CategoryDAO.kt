@@ -4,7 +4,7 @@ import com.link184.products.core.model.Category
 
 
 class CategoryDAO(sqlPersistence: SqlPersistence) : SqldelightDAO(sqlPersistence),
-    SqlDelightCRUD<Category> {
+        SqlDelightCRUD<Category> {
     private val transacter = database.categorySqlModelQueries
     private val productDAO = ProductDAO(sqlPersistence)
 

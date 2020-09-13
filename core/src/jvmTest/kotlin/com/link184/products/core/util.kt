@@ -19,19 +19,19 @@ suspend fun <T> Flow<T>.safeCollect(onSuccess: suspend (T) -> Unit, onError: (Th
 }
 
 inline fun <reified T : Any> T.getPrivateMember(memberName: String) =
-    T::class.declaredMemberProperties
-        .firstOrNull { it.name == memberName }
-        ?.let {
-            it.isAccessible = true
-            it.get(this@getPrivateMember)
-        }
+        T::class.declaredMemberProperties
+                .firstOrNull { it.name == memberName }
+                ?.let {
+                    it.isAccessible = true
+                    it.get(this@getPrivateMember)
+                }
 
 fun Any.setPrivateMember(fieldName: String, newValue: Any?) =
-    this::class.java.getDeclaredField(fieldName)
-        .apply {
-            isAccessible = true
-            val modifiersField = this::class.java.getDeclaredField("modifiers")
-            modifiersField.isAccessible = true
-            modifiersField.setInt(this, this.modifiers and Modifier.FINAL.inv())
-            set(this@setPrivateMember, newValue)
-        }
+        this::class.java.getDeclaredField(fieldName)
+                .apply {
+                    isAccessible = true
+                    val modifiersField = this::class.java.getDeclaredField("modifiers")
+                    modifiersField.isAccessible = true
+                    modifiersField.setInt(this, this.modifiers and Modifier.FINAL.inv())
+                    set(this@setPrivateMember, newValue)
+                }

@@ -21,16 +21,16 @@ abstract class SqldelightDAO(sqlPersistence: SqlPersistence) {
                         }
                     }
             ),
-        comlink184coreproducts.sql.ProductSqlModel.Adapter(
-            object : ColumnAdapter<SalePrice, String> {
-                override fun decode(databaseValue: String): SalePrice {
-                    return Json.decodeFromString(databaseValue)
-                }
+            comlink184coreproducts.sql.ProductSqlModel.Adapter(
+                    object : ColumnAdapter<SalePrice, String> {
+                        override fun decode(databaseValue: String): SalePrice {
+                            return Json.decodeFromString(databaseValue)
+                        }
 
-                override fun encode(value: SalePrice): String {
-                    return Json.encodeToString(value)
-                }
-            }
-        )
+                        override fun encode(value: SalePrice): String {
+                            return Json.encodeToString(value)
+                        }
+                    }
+            )
     )
 }

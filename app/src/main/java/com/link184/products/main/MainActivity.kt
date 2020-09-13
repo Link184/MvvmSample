@@ -40,7 +40,7 @@ class MainActivity : BaseActivity<MainVM>(MainVM::class) {
                             setBackgroundColor(backgroundColor)
 
                             val textColor = Palette.Swatch(backgroundColor.removeAlpha(), width * height)
-                                .titleTextColor
+                                    .titleTextColor
 
                             productName.text = it.name
                             productName.setTextColor(textColor)
@@ -52,7 +52,7 @@ class MainActivity : BaseActivity<MainVM>(MainVM::class) {
                             }
                             onClick {
                                 DetailsActivity.startActivity(this@MainActivity,
-                                    it.categoryId, it.id,productName, productThumbnail)
+                                        it.categoryId, it.id, productName, productThumbnail)
                             }
                         }
                     }

@@ -28,13 +28,13 @@ class DatabaseTest {
         assertEquals(categoryResponse, categories)
 
         val testItem = Category(
-            "666",
-            "TestName",
-            "TestDescription",
-            listOf(
-                Product("444", "666", "TestName", "TestUrl", "TestDesc", SalePrice("5.55".toBigDecimal(), Currency.EUR)),
-                Product("555", "666", "TestName2", "TestUrl2", "TestDesc2", SalePrice("445.5555".toBigDecimal(), Currency.EUR))
-            )
+                "666",
+                "TestName",
+                "TestDescription",
+                listOf(
+                        Product("444", "666", "TestName", "TestUrl", "TestDesc", SalePrice("5.55".toBigDecimal(), Currency.EUR)),
+                        Product("555", "666", "TestName2", "TestUrl2", "TestDesc2", SalePrice("445.5555".toBigDecimal(), Currency.EUR))
+                )
         )
         categoryDAO.insertItem(testItem)
         categories = categoryDAO.getItems()

@@ -9,8 +9,8 @@ import com.link184.products.core.sql.ProductDAO
 import kotlinx.coroutines.flow.Flow
 
 class CategoriesRepository(
-    service: CategoriesService,
-    private val persistentSession: PersistentSession
+        service: CategoriesService,
+        private val persistentSession: PersistentSession
 ) : BaseRepository<CategoriesService>(service) {
     private val categoryDAO = CategoryDAO(persistentSession)
     private val productDAO by lazy { ProductDAO(persistentSession) }
@@ -20,7 +20,7 @@ class CategoriesRepository(
     }
 
     private fun List<Category>.injectUrlSuffixesToAllProducts(): List<Category> {
-        return map {category ->
+        return map { category ->
             val productsWithInjectedUrls = category.products.map {
                 it.copy(url = persistentSession.mediaHostingBaseUrl + it.url)
             }
