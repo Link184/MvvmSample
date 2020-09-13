@@ -32,15 +32,16 @@ class DetailsActivity : BaseActivity<DetailsVM>(DetailsVM::class) {
             productName.text = product.name
             productPrice.text = product.salePrice.toExplicitString()
             productImage.loadUrl(product.url) {
-                error(R.drawable.ic_baseline_error)
                 listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        return false
+                        productImage.setImageResource(R.drawable.ic_baseline_error)
+                        return true
                     }
 
                     override fun onResourceReady(resource: Drawable, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                         Palette.from(resource.toBitmap()).generate { palette ->
                             palette?.vibrantSwatch?.titleTextColor?.let { textColor ->
+                                rootContainer.setBackgroundColor(palette.vibrantSwatch!!.rgb)
                                 productName.setTextColor(textColor)
                                 productPrice.setTextColor(textColor)
                             }
